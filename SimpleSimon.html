@@ -6,19 +6,23 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/simplesimon.css">
     <link rel="stylesheet" href="css/cyborg.css">
-</head>
+</head>k
 <body>
 <div class="container">
-    <h1 class="hero text-center">Simple Simon</h1>
-    <div class="row ">
-        <h3 class="start-toggle" id="start-toggle">Start</h3>
-        <!-- Columns created for responsiveness https://v4-alpha.getbootstrap.com/layout/grid/ -->
-            <div class="red" id="red"></div>
-            <div class="blue" id="blue"></div>
-            <div class="yellow" id="yellow"></div>
-            <div class="green" id="green"></div>
+    <h1 class="hero jumbotron">Simple Simon</h1>
+    <div class="row">
+        <h3 class="start text-center" id="start-toggle">Start</h3>
+        <div class="col-md-6 text-center">
+            <button class="red btn-danger" id="1"></button>
+            <button class="blue btn-primary" id="2"></button>
+        </div>
+        <div class="col-md-6 text-center">
+            <button class="yellow btn-warning" id="3"></button>
+            <button class="green btn-success" id="4"></button>
         </div>
     </div>
+</div>
+</div>
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
@@ -27,9 +31,9 @@
 <script>
     "use strict";
 
-    $(document).ready(function() {
-        $('#start-toggle').click(function() {
-            $('#red').fadeOut();
+    $(document).ready(function () {
+        $('#start-toggle').click(function () {
+            $('.red').fadeOut();
         });
     });
 

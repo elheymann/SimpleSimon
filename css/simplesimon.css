@@ -1,39 +1,23 @@
-#hero{
+.hero{
     text-align: center;
 }
 
-
-
-#red  {
-    background-color: red;
-    padding: 0;
-    margin: 0;
+.red  {
     width: 5em;
     height: 5em;
 
 }
-#blue {
-    background-color: blue;
-    padding: 0;
-    margin: 0;
-    width: 5em;
-    height: 5em;
-
-
-}
-
-#yellow {
-    background-color: darkgreen;
-    padding: 0;
-    margin: 0;
+.blue {
     width: 5em;
     height: 5em;
 }
 
-#green {
-    background-color: yellow;
-    padding: 0;
-    margin: 0;
+.yellow {
+    width: 5em;
+    height: 5em;
+}
+
+.green {
     width: 5em;
     height: 5em;
 }
