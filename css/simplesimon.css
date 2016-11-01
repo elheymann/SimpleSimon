@@ -2,14 +2,6 @@
     text-align: center;
 }
 
-.board {
-    width: 80%;
-    margin: 1em;
-}
-
-.row {
-    width: 420px;
-}
 
 .quadrant {
     border: .25em solid #111;

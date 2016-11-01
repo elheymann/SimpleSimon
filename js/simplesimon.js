@@ -1,7 +1,9 @@
+"use strict";
+
 var game;
 game = {
     count: 0,
-    possibilities: ['#green', '#blue', '#red', '#yellow'],
+    possibilities: ["#green", "#blue", "#red", "#yellow"],
     currentGame: [],
     player: [],
     sound: {
@@ -10,26 +12,12 @@ game = {
         yellow: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'),
         green: new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3')
     }
-
 };
 
+//play sound when corresponding color is called
 
-
-function simonMoves() {
-    var i = 0;
-    var moves = setInterval(function(){
-        playGame(game.currentGame[i]);
-        i++;
-        if (i >= game.currentGame.length) {
-            clearInterval(moves);
-        }
-    }, 600);
-
-    clearPlayer();
-}
-
-function sound(name) {
-    switch(name) {
+function sound(color) {
+    switch(color) {
         case'#green':
             game.sound.green.play();
             break;
@@ -45,36 +33,48 @@ function sound(name) {
     }
 }
 
-function lights(){
-    $(selector).animate({
-        property: "value"
-    }, duration1).animate({
-        property: "value"
-    }, duration2).animate({
-        property: "value"
-    }, duration3);
+//Simon moves are generated
+
+function simonMoves() {
+    var i = 0;
+    var moves = setInterval(function(){
+        playGame(game.currentGame[i]);
+        i++;
+        if (i >= game.currentGame.length) {
+            clearInterval(moves);
+        }
+    }, 600);
+
+    playerMoves();
 }
 
+//sound is associated with color played by Simon and player
 
-
-function playGame(field) {
-    $(field).addClass("hover");
-    sound(field);
+function playGame(play) {
+    $(play).addClass("hover");
+    sound(play);
     setTimeout(function(){
-        $(field).removeClass("hover");
+        $(play).removeClass("hover");
     }, 400);
 }
-function clearPlayer() {
+
+
+//creates game.player array to annotate player's moves
+
+function playerMoves() {
     game.player = [];
 }
 
+
+//created variable to associate array from playerMoves to an ID and pushed the array to playerTurn
 function addToPlayer(id) {
-    var field = "#" + id;
-    console.log(field);
-    game.player.push(field);
-    playerTurn(field);
+    var play = "#" + id;
+    console.log(play);
+    game.player.push(play);
+    playerTurn(play);
 }
 
+//created function with if/else statements to determine whether player's moves were the same as Simon's
 function playerTurn(x) {
     if (game.player[game.player.length - 1] !== game.currentGame[game.player.length - 1]) {
         alert('Wrong move! Try again!');
@@ -95,42 +95,36 @@ function playerTurn(x) {
     }
 }
 
-function nextLevel() {
-    addCount();
-}
 
 function generateMove(){
     game.currentGame.push(game.possibilities[(Math.floor(Math.random()*4))]);
-    //alert(game.currentGame.length);
+    alert("Round " + game.currentGame.length + ": Good luck!");
     simonMoves();
 }
 
 function addCount() {
     game.count++;
-    $('#countLevel').addClass("animated fadeOutDown");
-
+    $('#countLevel').addClass();
     setTimeout(function(){
-        $('#countLevel').removeClass("fadeOutDown").html(game.count).addClass("fadeInDown");
+        $('#countLevel').removeClass().html(game.count).addClass();
     }, 200);
 
     generateMove();
 }
-function clearGame() {
-    game.currentGame = [];
-    game.count = 0;
+
+function nextLevel() {
     addCount();
 }
 
 function newGame() {
     clearGame();
 }
-$("#quadrant").click(function() {
-    $("#quadrant").animate({
-        opacity: "0"
-    }, 500).animate({
-        opacity: "1"
-    }, 500);
-});
+
+function clearGame() {
+    game.currentGame = [];
+    game.count = 0;
+    addCount();
+}
 
 function endGame(){
     window.close()
