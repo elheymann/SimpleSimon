@@ -5,23 +5,35 @@
     <title>Simple Simon</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/simplesimon.css">
-    <link rel="stylesheet" href="css/cyborg.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/slate.css">
 </head>
 <body>
-<div class="container">
-    <h1 class="hero jumbotron">Simple Simon</h1>
-    <div class="row">
-        <h3 class="start text-center" id="start-toggle">Start</h3>
-        <div class="col-md-6 text-center">
-            <button class="colors btn-danger" id="red"></button>
-            <button class="colors btn-primary" id="bue"></button>
+<div class="container-fluid">
+    <h1 class="hero jumbotron">Simple Simon Game</h1>
+    <div class="board">
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+            <div class="quadrant green" id="green" onClick="addToPlayer(this.id)"></div>
+            <div class="quadrant red" id="red" onClick="addToPlayer(this.id)"></div>
+            </div>
         </div>
-        <div class="col-md-6 text-center">
-            <button class="colors btn-warning" id="yellow"></button>
-            <button class="colors btn-success" id="green"></button>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+            <div class="quadrant yellow" id="yellow" onClick="addToPlayer(this.id)"></div>
+            <div class="quadrant blue" id="blue" onClick="addToPlayer(this.id)"></div>
+        </div>
         </div>
     </div>
-</div>
+    <div id="gameNumber"><h2 id="countLevel">0</h2></div>
+    <div>
+        <div class="row">
+            <button class="btn-success" id="play" onClick="newGame()">Play</button>
+            <button class="btn-danger" id="end" onClick="endGame()">End Game</button>
+            <button class="btn-primary" id="reset" onClick="clearGame()">Reset</button>
+        </div>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
@@ -29,3 +41,4 @@
 <script src="js/simplesimon.js"></script>
 </body>
 </html>
+

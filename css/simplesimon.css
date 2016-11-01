@@ -2,11 +2,45 @@
     text-align: center;
 }
 
-.colors  {
-    width: 5em;
-    height: 5em;
-
+.board {
+    width: 80%;
+    margin: 1em;
 }
+
+.row {
+    width: 420px;
+}
+
+.quadrant {
+    border: .25em solid #111;
+    display: inline-block;
+    margin: -2px;
+    height: 10em;
+    width: 10em;
+}
+
+.green {
+    background-color: green;
+    border-top-left-radius: 100%;
+}
+
+.red {
+    background-color: red;
+    border-top-right-radius: 100%;
+}
+
+.yellow {
+    background-color: yellow;
+    border-bottom-left-radius: 100%;
+}
+
+.blue {
+    background-color: blue;
+    border-bottom-right-radius: 100%;
+}
+
+
+
 
 
 
