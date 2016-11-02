@@ -3,30 +3,30 @@
 }
 
 
-.quadrant {
+.colors {
     border: .25em solid #111;
     display: inline-block;
-    margin: -2px;
+
     height: 10em;
     width: 10em;
 }
 
-.green {
+#green {
     background-color: green;
     border-top-left-radius: 100%;
 }
 
-.red {
+#red {
     background-color: red;
     border-top-right-radius: 100%;
 }
 
-.yellow {
+#yellow {
     background-color: yellow;
     border-bottom-left-radius: 100%;
 }
 
-.blue {
+#blue {
     background-color: blue;
     border-bottom-right-radius: 100%;
 }
