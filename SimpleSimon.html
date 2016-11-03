@@ -5,39 +5,39 @@
     <title>Simple Simon</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/simplesimon.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/slate.css">
 
 </head>
 <body>
 <div class="container">
     <h1 class="hero jumbotron">Simple Simon Game</h1>
-    <div class="board">
+    <div class="board text-center">
         <div class="row">
-            <div class="col-md-4">
-            <div class="colors" id="green" onClick="addToPlayer(this.id)"></div>
-            <div class="colors" id="red" onClick="addToPlayer(this.id)"></div>
+            <div class="col-md-12">
+            <div class="colors" id="green"></div>
+            <div class="colors" id="red"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-            <div class="colors" id="yellow" onClick="addToPlayer(this.id)"></div>
-            <div class="colors" id="blue" onClick="addToPlayer(this.id)"></div>
+            <div class="col-md-12">
+            <div class="colors" id="yellow"></div>
+            <div class="colors" id="blue"></div>
             </div>
         </div>
     </div>
-   <h2 id="countLevel">0</h2>
+   <h1 id="countLevel">0</h1>
     <div>
-        <div class="row">
-            <button class="btn-success" id="play" onClick="newGame()">Play</button>
-            <button class="btn-danger" id="end" onClick="endGame()">End Game</button>
-            <button class="btn-primary" id="reset" onClick="clearGame()">Reset</button>
+        <div class="row text-center">
+            <button class="btn-success" id="play">Play</button>
+            <button class="btn-danger" id="end" >End Game</button>
+            <button class="btn-primary" id="reset">Reset</button>
         </div>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
         crossorigin="anonymous"></script>
 <script src="js/bootstrap.js"></script>
-<script src="js/simplesimon.js"></script>
+<script src="js/simplesimon2.js"></script>
 </body>
 </html>
 

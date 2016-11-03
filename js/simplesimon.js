@@ -1,5 +1,5 @@
 "use strict";
-
+var comparisonIndex = 0;
 var game;
 game = {
     count: 0,
@@ -14,8 +14,31 @@ game = {
     }
 };
 
+function clearGame() {
+    game.currentGame = [];
+    game.count = 0;
 
+}
 
+function newGame() {
+    clearGame();
+    generateMove();
+}
+
+//Simon moves are generated
+function callSound() {
+    var i = 0;
+    var moves = setInterval(function(){
+        sound(game.currentGame[i]);
+        i++;
+        if (i >= game.currentGame.length) {
+            clearInterval(moves);
+        }
+    }, 600);
+
+    game.player = [];
+    comparisonIndex = 0;
+}
 
 //play sound when corresponding color is called
 function sound(color) {
@@ -23,113 +46,111 @@ function sound(color) {
     switch(color) {
         case'#green':
             game.sound.green.play();
-            $("#green").addClass("animated pulse");
+            $("#green").css("opacity", ".2")
+                .animate({
+                    opacity: 1.0
+                }, 350);
+            console.log('greenAnimate');
             break;
         case '#blue':
             game.sound.blue.play();
-            $("#blue").addClass("animated pulse");
+            $("#blue").css("opacity", ".2")
+                .animate({
+                    opacity: 1.0
+                }, 350);
+            console.log('blueAnimate');
             break;
         case '#red':
             game.sound.red.play();
-            $("#red").addClass("animated pulse");
+            $("#red").css("opacity", ".2")
+                .animate({
+                    opacity: 1.0
+                }, 350);
+            console.log('redAnimate');
             break;
         case '#yellow':
             game.sound.yellow.play();
-            $("#yellow").addClass("animated pulse");
+            $("#blue").css("opacity", ".2")
+                .animate({
+                    opacity: 1.0
+                }, 350);
+            console.log('yellowAnimate');
             break;
     }
 }
 
-//Simon moves are generated
-
-function simonMoves() {
-    var i = 0;
-    var moves = setInterval(function(){
-        startGame(game.currentGame[i]);
-        i++;
-        if (i >= game.currentGame.length) {
-            clearInterval(moves);
-        }
-    }, 600);
-
-    playerMoves();
-}
-//game play is initiated
-function startGame(play) {
+/*created variable to associate array from playerMoves to an ID and pushed the array to playersMove*/
+/*$(".colors").click(function(id) {
+    var play = "#" + id;
     sound(play);
-    setTimeout(function(){
-    }, 600);
-}
+    console.log(this);
+    game.player.push(play);
+    playersMove(play);
+});*/
 
+function addToPlayer(id) {
+    var field = "#" + id;
+    sound(field);
+    console.log(field);
+    game.player.push(field);
+    if (game.player[comparisonIndex] == game.currentGame[comparisonIndex]){
+        if (game.player[game.player.length - 1] == game.currentGame[game.player.length - 1]){
+            addCount();
+            comparisonIndex = 0;
+            generateMove();
+        } else {
+            comparisonIndex++;
+        }
+    }   else {
+            newGame();
+            comparisonIndex = 0;
+    }
+
+//    playersMove(field);
+}
 //creates game.player array to annotate player's moves
 
-function playerMoves() {
-    game.player = [];
-}
-
-
-//created variable to associate array from playerMoves to an ID and pushed the array to playersTurn
-function addToPlayer(id) {
-    var play = "#" + id;
-    console.log(play);
-    game.player.push(play);
-    playersTurn(play);
-}
-
 //created function with if/else statements to determine whether player's moves were the same as Simon's
-function playersTurn(x) {
-
+/*function playersMove(x) {
+    console.log("Game player le ngth is " + game.player.length);
+    console.log("Current Game length is " + game.currentGame.length);
     if (game.player[game.player.length - 1] !== game.currentGame[game.player.length - 1]) {
-        alert('Wrong move! Try again!');
-        simonMoves();
-
+        alert("Wrong Move!");
+        callSound();
     } else {
         sound(x);
-        console.log("Good Move!");
         var check = game.player.length === game.currentGame.length;
         if (check) {
             if(game.count == 35){
                 alert('You won! Congrats!!');
             } else {
-                alert("End Round " + (game.count) + "!");
+                console.log("End Round " + (game.count) + "!");
                 nextLevel();
             }
         }
     }
 }
 
-
-function generateMove(){
-    game.currentGame.push(game.possibilities[(Math.floor(Math.random()*4))]);
-    alert("Round " + game.currentGame.length + ": Good luck!");
-    simonMoves();
-}
-
+function nextLevel() {
+    addCount();
+}*/
 function addCount() {
     game.count++;
     $("#countLevel").addClass("animated fadeOutDown");
 
-    setTimeout(function(){
-        $("#countLevel").removeClass("fadeOutDown").html(game.count).addClass("fadeInDown");
-    }, 200);
+     setTimeout(function(){
+     $("#countLevel").removeClass("fadeOutDown").html(game.count).addClass("fadeInDown");
+     }, 600);
 
-    generateMove();
+
 }
 
-
-function nextLevel() {
-    addCount();
+function generateMove(){
+    game.currentGame.push(game.possibilities[(Math.floor(Math.random()*4))]);
+    console.log("Round " + game.currentGame.length + ": Good luck!");
+      callSound();
 }
 
-function newGame() {
-    clearGame();
-}
-
-function clearGame() {
-    game.currentGame = [];
-    game.count = 0;
-    addCount();
-}
 
 function endGame(){
     window.close()
