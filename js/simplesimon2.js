@@ -1,4 +1,5 @@
 "use strict";
+
 var comparisonIndex = 0;
 var game;
 game = {
@@ -7,52 +8,59 @@ game = {
     playerMoves: []
 };
 //created animation when colors are clicked
-$("#red").click(function() {
+$(document).ready(function () {
+    $(".colors").click(function () {
         $("#red").animate({
             opacity: "0"
-        }, 500).animate({
+        }, 400).animate({
             opacity: "1"
-        }, 500);
+        }, 400);
     });
+});
 
-
-$("#blue").click(function() {
+$(document).ready(function () {
+    $("#blue").click(function () {
         $("#blue").animate({
             opacity: "0"
-        }, 500).animate({
+        }, 400).animate({
             opacity: "1"
-        }, 500);
+        }, 400);
     });
+});
 
-
-$("#green").click(function() {
+$(document).ready(function () {
+    $("#green").click(function () {
         $("#green").animate({
             opacity: "0"
-        }, 500).animate({
+        }, 400).animate({
             opacity: "1"
-        }, 500);
+        }, 400);
     });
+});
 
-$("#yellow").click(function() {
+$(document).ready(function () {
+    $("#yellow").click(function () {
         $("#yellow").animate({
             opacity: "0"
-        }, 500).animate({
+        }, 400).animate({
             opacity: "1"
-        }, 500);
+        }, 400);
     });
-
+});
 
 //Simon moves
 
 function simonMoves() {
-    game.currentGame.push(game.possibilities[(Math.floor(Math.random() * 4)+ 1)]);
-    console.log(game.possibilities);
-    console.log(game.currentGame);
+    game.currentGame.push(game.possibilities[(Math.floor(Math.random() * 4))]);
+    console.log("game.possibilities: " + game.possibilities);
+    console.log("game.currentGame: " + game.currentGame);
 }
 
 $("#play").click(nextRound);
 
-$(".colors").click(function(){
+
+//gives numbers to colors and pushes to playerMoves array as numbers to check player's moves
+$(".colors").click(function () {
     var numbers = {
         red: 3,
         green: 1,
@@ -62,65 +70,82 @@ $(".colors").click(function(){
     var number = $(this).attr("id");
     game.playerMoves.push(numbers[number]);
 
-    if (game.playerMoves[comparisonIndex] == game.currentGame[comparisonIndex]){
+    if (game.playerMoves[comparisonIndex] == game.currentGame[comparisonIndex]) {
         comparisonIndex++;
-        if (comparisonIndex == game.currentGame.length){
+        if (comparisonIndex == game.currentGame.length) {
             nextRound();
-            alert("Start Next Round");
+            alert("Start Round " + (comparisonIndex + 1));
             comparisonIndex = 0;
             game.playerMoves = [];
         }
     } else {
         alert("Game Over!");
-        //create clearGame to startOver
+        clearGame();
     }
 
-    console.log(game.playerMoves);
+    console.log("playerMoves" + game.playerMoves);
 });
 
-function nextRound(){
+
+function nextRound() {
     simonMoves();
-    var i =0;
-    var id = setInterval(function(){
+    var i = 0;
+    var id = setInterval(function () {
         assignNumbersToColors(game.currentGame[i]);
         i++;
         if (i >= game.currentGame.length) {
             clearInterval(id);
         }
-    },750);
+    }, 800);
 }
 
 
 function assignNumbersToColors(number) {
     console.log(number);
-    switch(number) {
+    switch (number) {
         case 1:
             $("#green").css("opacity", ".2")
                 .animate({
                     opacity: 1.0
-                }, 350);
+                }, 400);
             console.log('greenAnimate');
             break;
         case 2:
             $("#blue").css("opacity", ".2")
                 .animate({
                     opacity: 1.0
-                }, 350);
+                }, 400);
             console.log('blueAnimate');
             break;
         case 3:
             $("#red").css("opacity", ".2")
                 .animate({
                     opacity: 1.0
-                }, 350);
+                }, 400);
             console.log('redAnimate');
             break;
         case 4:
             $("#yellow").css("opacity", ".2")
                 .animate({
                     opacity: 1
-                }, 350);
+                }, 400);
             console.log('yellowAnimate');
             break;
     }
 }
+
+$("#end").click(function () {
+    window.close()
+});
+
+function clearGame() {
+    comparisonIndex = 0;
+    game.playerMoves = [];
+    game.currentGame = [];
+}
+
+$("#reset").click(function () {
+    clearGame();
+    console.log("Game resets")
+});
+
