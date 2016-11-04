@@ -70,7 +70,7 @@ function sound(color) {
             break;
         case '#yellow':
             game.sound.yellow.play();
-            $("#blue").css("opacity", ".2")
+            $("#yel").css("opacity", ".2")
                 .animate({
                     opacity: 1.0
                 }, 350);
@@ -112,7 +112,7 @@ function addToPlayer(id) {
 
 //created function with if/else statements to determine whether player's moves were the same as Simon's
 /*function playersMove(x) {
-    console.log("Game player le ngth is " + game.player.length);
+    console.log("Game player length is " + game.player.length);
     console.log("Current Game length is " + game.currentGame.length);
     if (game.player[game.player.length - 1] !== game.currentGame[game.player.length - 1]) {
         alert("Wrong Move!");

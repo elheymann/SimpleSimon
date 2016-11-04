@@ -1,11 +1,13 @@
 "use strict";
-
+(function () {
 var comparisonIndex = 0;
 var game;
 game = {
     possibilities: [1, 2, 3, 4],
     currentGame: [],
-    playerMoves: []
+    playerMoves: [],
+    count: 1
+
 };
 //created animation when colors are clicked
 $(document).ready(function () {
@@ -73,8 +75,8 @@ $(".colors").click(function () {
     if (game.playerMoves[comparisonIndex] == game.currentGame[comparisonIndex]) {
         comparisonIndex++;
         if (comparisonIndex == game.currentGame.length) {
+            addCount();
             nextRound();
-            alert("Start Round " + (comparisonIndex + 1));
             comparisonIndex = 0;
             game.playerMoves = [];
         }
@@ -133,6 +135,8 @@ function assignNumbersToColors(number) {
             break;
     }
 }
+// need to create function to animate opacity for all colors and call function in switch case example: #blue and make it for .click functions too
+
 
 $("#end").click(function () {
     window.close()
@@ -142,6 +146,8 @@ function clearGame() {
     comparisonIndex = 0;
     game.playerMoves = [];
     game.currentGame = [];
+    game.count = 1;
+    $("#gameLevel").removeClass("fadeOutDown").html(game.count).addClass("fadeInDown");
 }
 
 $("#reset").click(function () {
@@ -149,3 +155,17 @@ $("#reset").click(function () {
     console.log("Game resets")
 });
 
+
+
+function addCount() {
+    game.count++;
+    $("#gameLevel").addClass("animated fadeOutDown");
+
+    setTimeout(function(){
+        $("#gameLevel").removeClass("fadeOutDown").html(game.count).addClass("fadeInDown");
+    }, 600);
+
+
+}
+
+})();
