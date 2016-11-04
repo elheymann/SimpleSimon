@@ -9,7 +9,7 @@ game = {
 };
 //created animation when colors are clicked
 $(document).ready(function () {
-    $(".colors").click(function () {
+    $("#red").click(function () {
         $("#red").animate({
             opacity: "0"
         }, 400).animate({
